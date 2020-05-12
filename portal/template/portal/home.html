@@ -1,0 +1,25 @@
+{% extends 'portal/base.html' %}
+{% block main_page %}
+<div id="" class="cd-section" style="padding-top: 3%; height: 78vh;">
+    <div class="container">
+        <div class="row m-auto">
+            <div class="col-md-7  m-auto" style="margin-top: 8%;">
+                <h1 class="title text-white">Recruitment management for modern Business.</h1>
+                <h4 class="text-white">Tired of finding right jobs and employees? Don't worry we have covered it all for you. Find the jobs
+                    which suits your profile. Or find the employees who suits your criterias.</h4>
+                <br>
+                <a href="{{url_for('portal.signup')}}" class="btn btn-outline-info btn-raised btn-lg">
+                    Get Started
+                </a>
+
+            </div>
+            <div class="col-md-5 pl-4">
+
+                <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_WVPzdv.json" background="transparent"
+                    speed="1" style="width: 600px; height: 600px; float: left;" loop autoplay></lottie-player>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

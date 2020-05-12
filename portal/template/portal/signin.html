@@ -1,0 +1,68 @@
+{% extends 'portal/base.html' %}
+{% block main_page %}
+<div class="signup-page container" style="margin-top: 20vh;">
+
+
+    <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+            <div class="card card-signup">
+                <h2 class="card-title text-center">Login</h2>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5 ml-auto">
+                            <div class="info info-horizontal">
+
+                                <div class="description">
+                                    <h4 class="info-title">Welcome Back!</h4>
+                                    <p class="description">
+                                        We are happy to see you again. Check your profile today or apply for new ob
+                                        profiles to grab the oportunity.
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-5 mr-auto">
+
+                            <form class="form" method="" action="">
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">mail</i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Email...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">lock_outline</i>
+                                            </span>
+                                        </div>
+                                        <input type="password" placeholder="Password..." class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-center col-md-6">
+                                        <a href="{{ url_for('portal.dashboard') }}" class="btn btn-primary btn-round">Sign in</a>
+                                    </div>
+                                    <div class="text-center col-md-6">
+                                        <a href="{{url_for('portal.signup')}}" class="btn btn-primary btn-round">Sign up</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
