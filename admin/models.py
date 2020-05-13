@@ -1,7 +1,7 @@
 import hashlib
 from app import *
 from flask import session
-
+from bson import ObjectId
 
 class Users:
 	def __init__(self):
@@ -46,3 +46,40 @@ class Users:
 				return 1
 		else:
 			return 0
+
+class Jobs:
+	def __init__(self):
+		self.mongo =mongo.db
+	
+	def put_job(self,job):
+		try:
+			result=mongo.db.jobs.insert_one(job)
+			if result:
+				return True
+			else:
+				return False
+		except Exception as error:
+			print(error)
+			return "something went wrong"
+
+	def put_aptitude(self,job_id,apti):
+		try:
+			result=mongo.db.jobs.update_one({"_id":ObjectId("5ebc58c43932aa87a84389a8")},{"$set":{"aptitude":apti}})
+			if result:
+				return True
+			else:
+				return False
+		except Exception as error:
+			print(error)
+			return "something went wrong"
+
+	def put_personality(self,job_id,personality):
+		try:
+			result=mongo.db.jobs.update_one({"_id":job_id},{"$set":{personality:personality}})
+			if result:
+				return True
+			else:
+				return False
+		except Exception as error:
+			print(error)
+			return "something went wrong"

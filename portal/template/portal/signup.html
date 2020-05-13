@@ -1,6 +1,17 @@
 {% extends 'portal/base.html' %}
 {% block main_page %}
 <div class="signup-page container" style="margin-top: 10vh;">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+        aria-hidden="true">×</span></button>
+    {{message}}
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
   <div class="row">
     <div class="col-md-10 ml-auto mr-auto">
       <div class="card card-signup">
@@ -36,7 +47,7 @@
             </div>
             <div class="col-md-5 mr-auto">
 
-              <form class="form" method="" action="">
+              <form class="form" method="POST" action="{{url_for('portal.signup')}}">
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -44,7 +55,7 @@
                         <i class="material-icons">face</i>
                       </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="First Name...">
+                    <input type="text" class="form-control" name="name" placeholder="First Name...">
                   </div>
                 </div>
                 <div class="form-group">
@@ -54,7 +65,7 @@
                         <i class="material-icons">mail</i>
                       </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Email...">
+                    <input type="text" class="form-control" name="email" placeholder="Email...">
                   </div>
                 </div>
                 <div class="form-group">
@@ -64,7 +75,7 @@
                         <i class="material-icons">lock_outline</i>
                       </span>
                     </div>
-                    <input type="password" placeholder="Password..." class="form-control" />
+                    <input type="password" placeholder="Password..." name="password" class="form-control" />
                   </div>
                 </div>
 
@@ -73,7 +84,7 @@
                     <a href="{{url_for('portal.signin')}}" class="btn btn-primary btn-round">Sign in</a>
                   </div>
                   <div class="text-center col-md-6">
-                    <a href="#" class="btn btn-primary btn-round">Sign up</a>
+                    <button type="submit" class="btn btn-primary btn-round">Sign up</button>
                   </div>
                 </div>
               </form>

@@ -36,6 +36,19 @@
         .body {
             background-color: #464646;
         }
+
+        .blurred-box {
+            position: relative;
+
+            background: inherit;
+            overflow: hidden;
+        }
+
+        .blurred-box:after {
+
+            box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);
+            filter: blur(10px);
+        }
     </style>
 </head>
 
@@ -63,6 +76,12 @@
                     <li class="nav-item">
                         <a href="{{url_for('portal.profile')}}" class="nav-link">
                             Profile
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{url_for('portal.logout')}}" class="nav-link">
+                            Logout
                         </a>
                     </li>
 
@@ -165,9 +184,24 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script src="{{url_for('portal.static', filename='js/three.r95.min.js')}}"></script>
-    <script src="{{url_for('portal.static', filename='js/p5.min.js')}}"></script>
     <script src="{{ url_for('portal.static', filename='js/vanta.rings.min.js')}}"></script>
+    <script src="{{url_for('portal.static', filename='js/p5.min.js')}}"></script>
     <script src="{{ url_for('portal.static', filename='js/vanta.topology.min.js')}}"></script>
+    <script>
+        var currentLocation = window.location;
+
+        if (currentLocation.pathname == "/profile") {
+            VANTA.TOPOLOGY({
+                el: "#bdy",
+                mouseControls: true,
+                touchControls: true,
+                minHeight: 600.00,
+                minWidth: 600.00,
+                scale: 1.00,
+                scaleMobile: 1.00
+            })
+        }
+    </script>
     {% block javascript %}
     {% endblock %}
 </body>

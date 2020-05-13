@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Hello World</h1>
-</body>
-</html>
+{% extends 'portal/base.html' %}
+{% block main_page %}
+<div id="" class="cd-section" style="padding-top: 3%; height: 78vh;">
+    <div class="container">
+        <div class="bg-white w-50 m-auto p-4 m-4 rounded shadow ">
+
+            <form method="POST" action="{{url_for('admin.add_job')}}">
+                <div class="row m-auto">
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInput1" class="label">category</label>
+                            <input type="text" class="form-control" name="category" placeholder="category" id="exampleInput1">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title" class="label">title</label>
+                            <input type="text" class="form-control" name="title" placeholder="title" id="exampleInput1">
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="description" class="label">description</label>
+                            <input type="text" class="form-control" name="description" placeholder="description" id="exampleInput1">
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="skills" class="label">skills</label>
+                            <input type="text" value="" placeholder="Skills" name="skills" class="tagsinput form-control" data-role="tagsinput" data-color="rose">
+
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary btn-round m-auto">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
