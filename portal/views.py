@@ -101,7 +101,7 @@ def personality_test():
             for question in job['personality']:
                 if question['answer']==request.form.get(question['question']):
                     personality_sum+=1 
-            print('this is test_id ',request.args.get('test_id'))
+            print('this is test_id ',)
             shortlist.update_personality(request.args.get('test_id'),personality_sum)
             return redirect(url_for('portal.dashboard'))
             
@@ -117,8 +117,6 @@ def personality_test():
 @portal.route('/signup', methods=['POST','GET'])
 def signup():
     try:
-        if session['logged_in']==True:
-            return redirect(url_for("portal.dashboard"))
         if request.method == 'POST':
             #x = request.get_json(force=True)
             email= request.form.get('email')
