@@ -29,6 +29,13 @@ class Users:
 		else:
 			return False
 
+	def get_user_by_id(self,id):
+		try:
+			user = mongo.db.users.find_one({"username":id})
+			return user
+		except Exception as error:
+			print(error)
+
 	def login_user(self, username, password):
 		result = self.check_user_exists(username)
 		if result:
@@ -54,8 +61,9 @@ class Jobs:
 	def put_job(self,job):
 		try:
 			result=mongo.db.jobs.insert_one(job)
+			
 			if result:
-				return True
+				return result.inserted_id
 			else:
 				return False
 		except Exception as error:
@@ -64,7 +72,7 @@ class Jobs:
 
 	def put_aptitude(self,job_id,apti):
 		try:
-			result=mongo.db.jobs.update_one({"_id":ObjectId("5ebc58c43932aa87a84389a8")},{"$set":{"aptitude":apti}})
+			result=mongo.db.jobs.update_one({"_id":ObjectId(job_id)},{"$set":{"aptitude":apti}})
 			if result:
 				return True
 			else:
@@ -75,7 +83,7 @@ class Jobs:
 
 	def put_personality(self,job_id,personality):
 		try:
-			result=mongo.db.jobs.update_one({"_id":job_id},{"$set":{personality:personality}})
+			result=mongo.db.jobs.update_one({"_id":ObjectId(job_id)},{"$set":{"personality":personality}})
 			if result:
 				return True
 			else:
@@ -83,3 +91,36 @@ class Jobs:
 		except Exception as error:
 			print(error)
 			return "something went wrong"
+
+	def get_all_jobs(self):
+		try:
+			result= mongo.db.jobs.find({})
+			print('This is rresult: ',result)
+			return result
+		except Exception as error:
+			print(error)
+			return "something went wrong"
+
+	def get_job(self,job_id):
+		try:
+			result=mongo.db.jobs.find_one({"_id":ObjectId(job_id)})
+			return result
+		except Exception as error:
+			print(error)
+			return "something went wrong"
+
+class Shortlist:
+	def __init__(self):
+		self.mongo = mongo.db
+
+	def get_profiles(self,job_id):
+		profiles=mongo.db.shortlist.find({"job_id":job_id})
+		users=Users()
+		all_profiles=[]
+		for profile in profiles:
+			user=users.get_user_by_id(profile['user_id'])
+			user['score']=profile['aptiscore']+profile['personalityscore']+profile['skillscore']
+			user['outoff']=profile['totalScore']
+			all_profiles.append(user)
+		print(all_profiles)
+		return all_profiles

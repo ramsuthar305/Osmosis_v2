@@ -3,12 +3,14 @@ from functools import wraps
 from flask import session
 import hashlib
 import json
-
+from datetime import datetime
 #custom imports
-from .models import Users
+from .models import Users, Shortlist
+from admin.models import Jobs
 
 user_object = Users()
-
+jobs = Jobs()
+shortlist= Shortlist()
 portal = Blueprint("portal", __name__, template_folder='template', static_folder='static/portal',
                    static_url_path='static/portal')
 
@@ -28,9 +30,9 @@ def index():
 @portal.route('/dashboard')
 def dashboard():
     try:
-        print(session['logged_in'])
+        alljobs=jobs.get_all_jobs()
         if session["logged_in"]:
-            return render_template('portal/dashboard.html')
+            return render_template('portal/dashboard.html',alljobs=alljobs)
         else:
             return redirect(url_for('portal.signin'))
     except Exception as error:
@@ -43,9 +45,74 @@ def profile():
     user=user_object.get_user_profile()
     return render_template('portal/profile.html',user=user)
 
-@portal.route('/test')
+@portal.route('/test',methods=['POST','GET'])
 def test():
-    return render_template('portal/test.html')
+    try:
+        if request.method=='POST':
+            job=jobs.get_job(request.args.get('job_id'))
+            apti=[]
+            #print(job)
+            print(request.form.get('name'))
+            aptitude_sum=0
+            for question in job['aptitude']:
+                if question['answer']==request.form.get(question['question']):
+                    aptitude_sum+=1
+            shortlist_profile={}
+            shortlist_profile['job_id']=request.args.get('job_id')
+            shortlist_profile['user_id']=session['id']
+            shortlist_profile['aptiscore']=aptitude_sum
+            shortlist_profile['personalityscore']=None
+            shortlist_profile['skillscore']=skillscore(job['skills'])
+            shortlist_profile['createdOn']=datetime.now()
+            shortlist_profile['totalScore']=10+len(job['skills'])+10
+            result=shortlist.save_profile(shortlist_profile)
+            print(result)
+            job['is_apti']=False
+            job['test_id']=result
+            return redirect(url_for('portal.personality_test',job_id=job['_id'],test_id=result))
+        else:
+            print(request.args.get('job_id'))
+            job=jobs.get_job(request.args.get('job_id'))
+            job['is_apti']=True
+            return render_template('portal/test.html',job=job)
+    except Exception as error:
+        print('this is exception',error)
+
+def skillscore(jobskills):
+    user=user_object.get_user_profile()
+    user_skills=[x.lower() for x in user['skills']]
+    skill_score=0
+    print(user_skills)
+    print(jobskills)
+    for skill in jobskills:
+        if skill.lower() in user_skills:
+            skill_score+=1
+    return skill_score
+
+@portal.route('/personality_test',methods=['POST','GET'])
+def personality_test():
+    try:
+        if request.method=='POST':
+            job=jobs.get_job(request.args.get('job_id'))
+            apti=[]
+            #print(job)
+            print(request.form.get('name'))
+            personality_sum=0
+            for question in job['personality']:
+                if question['answer']==request.form.get(question['question']):
+                    personality_sum+=1 
+            print('this is test_id ',request.args.get('test_id'))
+            shortlist.update_personality(request.args.get('test_id'),personality_sum)
+            return redirect(url_for('portal.dashboard'))
+            
+        else:
+            print(request.args.get('test_id'))
+            job=jobs.get_job(request.args.get('job_id'))
+            print(job)
+            return render_template('portal/personality.html',job=job,test_id=request.args.get('test_id'))
+            
+    except Exception as error:
+        print('this is exception',error)
 
 @portal.route('/signup', methods=['POST','GET'])
 def signup():
@@ -78,27 +145,26 @@ def signup():
         print(error)
         return render_template('portal/signup.html')
 
+
 @portal.route('/signin', methods = ['GET', 'POST'])
 def signin():
     try:
         print(session['logged_in'])
-
-        if session['logged_in']==False:
-            if request.method == 'POST':
-                #x = request.get_json(force=True)
-                email= request.form.get('email')
-                password= request.form.get('password')
-                
-                login_status = user_object.login_user(email,password)
-                if login_status==True:
-                    return redirect(url_for("portal.dashboard"))
-                else:
-                    flash(login_status)
-                    return render_template('portal/signin.html', TOPIC_DICT = TOPIC_DICT)
+        if session['logged_in']==True:
+            return redirect(url_for("portal.dashboard"))
+        if request.method == 'POST':
+            #x = request.get_json(force=True)
+            email= request.form.get('email')
+            password= request.form.get('password')
+            
+            login_status = user_object.login_user(email,password)
+            if login_status==True:
+                return redirect(url_for("portal.dashboard"))
             else:
-                return render_template('portal/signin.html')
+                flash(login_status)
+                return render_template('portal/signin.html', TOPIC_DICT = TOPIC_DICT)
         else:
-                return redirect(url_for('portal.dashboard'))
+            return render_template('portal/signin.html')
     except Exception as error:
         print(error)
         return render_template('portal/signin.html')

@@ -1,23 +1,24 @@
 {% extends 'portal/base.html' %}
 {% block main_page %}
-<div id="available_job" class="cd-section" style="padding-top: 3%;">
+<div id="available_job" class="cd-section" style="padding-top: 3%; min-height: 100vh;">
     <div class="container">
         <h1 class="title" style="color: white;">Available Jobs</h1>
         <div class="row">
+
+            {% for job in alljobs %}
             <div class="col-md-6 col-lg-4">
                 <div class="rotating-card-container">
                     <div class="card card-rotate">
                         <div class="front">
                             <div class="card-body">
                                 <h5 class="card-category card-category-social text-success">
-                                    <i class="fa fa-newspaper-o"></i> Software Engineering
+                                    <i class="fa fa-newspaper-o"></i> {{job['category']}}
                                 </h5>
                                 <h4 class="card-title">
-                                    <a href="{{ url_for('portal.test') }}">Python Internship available</a>
+                                    <a href="{{ url_for('portal.test') }}">{{job['title']}}</a>
                                 </h4>
                                 <p class="card-description">
-                                    We need a pythonn developer who can work on python frameworks to develop web site
-                                    and is avaiable for 6-12 months. And has knowledge of python web frameworks.
+                                    {{job['description']}}
                                 </p>
                             </div>
                             <div class="card-footer ">
@@ -34,14 +35,13 @@
                                     Skills & Frameworks
                                 </h5>
                                 <p class="card-description">
-                                    <span class="badge badge-primary">Python</span>
-                                    <span class="badge badge-info">Django</span>
-                                    <span class="badge badge-success">Flask</span>
-                                    <span class="badge badge-warning">HTML</span>
-                                    <span class="badge badge-default">CSS</span>
+                                    {% for skill in job['skills'] %}
+                                    <span class="badge badge-primary">{{skill}}</span>
+                                    {% endfor %}
                                 </p>
+                                {{job['_id']}}
                                 <div class="footer text-center">
-                                    <a href="{{ url_for('portal.test') }}" class="btn btn-rose btn-round">
+                                    <a href="{{ url_for('portal.test', job_id=job['_id']) }}" class="btn btn-rose btn-round">
                                         <i class="material-icons">input</i> Apply
                                     </a>
 
@@ -51,302 +51,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="rotating-card-container">
-                    <div class="card card-rotate">
-                        <div class="front">
-                            <div class="card-body">
-                                <h5 class="card-category card-category-social text-success">
-                                    <i class="fa fa-newspaper-o"></i> Software Engineering
-                                </h5>
-                                <h4 class="card-title">
-                                    <a href="{{ url_for('portal.test') }}">Python Internship available</a>
-                                </h4>
-                                <p class="card-description">
-                                    We need a pythonn developer who can work on python frameworks to develop web site
-                                    and is avaiable for 6-12 months. And has knowledge of python web frameworks.
-                                </p>
-                            </div>
-                            <div class="card-footer ">
-
-                                <div class="stats ml-auto">
-                                    <i class="material-icons">schedule</i> 5 min read
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="back">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Skills & Frameworks
-                                </h5>
-                                <p class="card-description">
-                                    <span class="badge badge-primary">Python</span>
-                                    <span class="badge badge-info">Django</span>
-                                    <span class="badge badge-success">Flask</span>
-                                    <span class="badge badge-warning">HTML</span>
-                                    <span class="badge badge-default">CSS</span>
-                                </p>
-                                <div class="footer text-center">
-                                    <a href="{{ url_for('portal.test') }}" class="btn btn-rose btn-round">
-                                        <i class="material-icons">input</i> Apply
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="rotating-card-container">
-                    <div class="card card-rotate">
-                        <div class="front">
-                            <div class="card-body">
-                                <h5 class="card-category card-category-social text-success">
-                                    <i class="fa fa-newspaper-o"></i> Software Engineering
-                                </h5>
-                                <h4 class="card-title">
-                                    <a href="{{ url_for('portal.test') }}">Python Internship available</a>
-                                </h4>
-                                <p class="card-description">
-                                    We need a pythonn developer who can work on python frameworks to develop web site
-                                    and is avaiable for 6-12 months. And has knowledge of python web frameworks.
-                                </p>
-                            </div>
-                            <div class="card-footer ">
-
-                                <div class="stats ml-auto">
-                                    <i class="material-icons">schedule</i> 5 min read
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="back">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Skills & Frameworks
-                                </h5>
-                                <p class="card-description">
-                                    <span class="badge badge-primary">Python</span>
-                                    <span class="badge badge-info">Django</span>
-                                    <span class="badge badge-success">Flask</span>
-                                    <span class="badge badge-warning">HTML</span>
-                                    <span class="badge badge-default">CSS</span>
-                                </p>
-                                <div class="footer text-center">
-                                    <a href="{{ url_for('portal.test') }}" class="btn btn-rose btn-round">
-                                        <i class="material-icons">input</i> Apply
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="rotating-card-container">
-                    <div class="card card-rotate">
-                        <div class="front">
-                            <div class="card-body">
-                                <h5 class="card-category card-category-social text-success">
-                                    <i class="fa fa-newspaper-o"></i> Software Engineering
-                                </h5>
-                                <h4 class="card-title">
-                                    <a href="{{ url_for('portal.test') }}">Python Internship available</a>
-                                </h4>
-                                <p class="card-description">
-                                    We need a pythonn developer who can work on python frameworks to develop web site
-                                    and is avaiable for 6-12 months. And has knowledge of python web frameworks.
-                                </p>
-                            </div>
-                            <div class="card-footer ">
-
-                                <div class="stats ml-auto">
-                                    <i class="material-icons">schedule</i> 5 min read
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="back">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Skills & Frameworks
-                                </h5>
-                                <p class="card-description">
-                                    <span class="badge badge-primary">Python</span>
-                                    <span class="badge badge-info">Django</span>
-                                    <span class="badge badge-success">Flask</span>
-                                    <span class="badge badge-warning">HTML</span>
-                                    <span class="badge badge-default">CSS</span>
-                                </p>
-                                <div class="footer text-center">
-                                    <a href="{{ url_for('portal.test') }}" class="btn btn-rose btn-round">
-                                        <i class="material-icons">input</i> Apply
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="rotating-card-container">
-                    <div class="card card-rotate">
-                        <div class="front">
-                            <div class="card-body">
-                                <h5 class="card-category card-category-social text-success">
-                                    <i class="fa fa-newspaper-o"></i> Software Engineering
-                                </h5>
-                                <h4 class="card-title">
-                                    <a href="{{ url_for('portal.test') }}">Python Internship available</a>
-                                </h4>
-                                <p class="card-description">
-                                    We need a pythonn developer who can work on python frameworks to develop web site
-                                    and is avaiable for 6-12 months. And has knowledge of python web frameworks.
-                                </p>
-                            </div>
-                            <div class="card-footer ">
-
-                                <div class="stats ml-auto">
-                                    <i class="material-icons">schedule</i> 5 min read
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="back">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Skills & Frameworks
-                                </h5>
-                                <p class="card-description">
-                                    <span class="badge badge-primary">Python</span>
-                                    <span class="badge badge-info">Django</span>
-                                    <span class="badge badge-success">Flask</span>
-                                    <span class="badge badge-warning">HTML</span>
-                                    <span class="badge badge-default">CSS</span>
-                                </p>
-                                <div class="footer text-center">
-                                    <a href="{{ url_for('portal.test') }}" class="btn btn-rose btn-round">
-                                        <i class="material-icons">input</i> Apply
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="rotating-card-container">
-                    <div class="card card-rotate">
-                        <div class="front">
-                            <div class="card-body">
-                                <h5 class="card-category card-category-social text-success">
-                                    <i class="fa fa-newspaper-o"></i> Software Engineering
-                                </h5>
-                                <h4 class="card-title">
-                                    <a href="{{ url_for('portal.test') }}">Python Internship available</a>
-                                </h4>
-                                <p class="card-description">
-                                    We need a pythonn developer who can work on python frameworks to develop web site
-                                    and is avaiable for 6-12 months. And has knowledge of python web frameworks.
-                                </p>
-                            </div>
-                            <div class="card-footer ">
-
-                                <div class="stats ml-auto">
-                                    <i class="material-icons">schedule</i> 5 min read
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="back">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Skills & Frameworks
-                                </h5>
-                                <p class="card-description">
-                                    <span class="badge badge-primary">Python</span>
-                                    <span class="badge badge-info">Django</span>
-                                    <span class="badge badge-success">Flask</span>
-                                    <span class="badge badge-warning">HTML</span>
-                                    <span class="badge badge-default">CSS</span>
-                                </p>
-                                <div class="footer text-center">
-                                    <a href="{{ url_for('portal.test') }}" class="btn btn-rose btn-round">
-                                        <i class="material-icons">input</i> Apply
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="rotating-card-container">
-                    <div class="card card-rotate">
-                        <div class="front">
-                            <div class="card-body">
-                                <h5 class="card-category card-category-social text-success">
-                                    <i class="fa fa-newspaper-o"></i> Software Engineering
-                                </h5>
-                                <h4 class="card-title">
-                                    <a href="{{ url_for('portal.test') }}">Python Internship available</a>
-                                </h4>
-                                <p class="card-description">
-                                    We need a pythonn developer who can work on python frameworks to develop web site
-                                    and is avaiable for 6-12 months. And has knowledge of python web frameworks.
-                                </p>
-                            </div>
-                            <div class="card-footer ">
-
-                                <div class="stats ml-auto">
-                                    <i class="material-icons">schedule</i> 5 min read
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="back">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Skills & Frameworks
-                                </h5>
-                                <p class="card-description">
-                                    <span class="badge badge-primary">Python</span>
-                                    <span class="badge badge-info">Django</span>
-                                    <span class="badge badge-success">Flask</span>
-                                    <span class="badge badge-warning">HTML</span>
-                                    <span class="badge badge-default">CSS</span>
-                                </p>
-                                <div class="footer text-center">
-                                    <a href="{{ url_for('portal.test') }}" class="btn btn-rose btn-round">
-                                        <i class="material-icons">input</i> Apply
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
+            {% endfor %}
         </div>
     </div>
 </div>

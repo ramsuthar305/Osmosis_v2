@@ -3,6 +3,8 @@ from app import *
 from flask import session
 import os 
 from pyresparser import ResumeParser
+from bson import ObjectId
+
 
 class Users:
 	def __init__(self):
@@ -107,3 +109,22 @@ class Users:
 
 
  
+class Shortlist:
+	def __init__(self):
+		self.mongo = mongo.db
+	
+	def save_profile(self,profile):
+		try:
+			result=mongo.db.shortlist.insert_one(profile)
+			print(result.inserted_id)
+			return result.inserted_id
+		except Exception as error:
+			print(error)
+		
+	def update_personality(self,id,score):
+		try:
+			print(id,score)
+			result=mongo.db.shortlist.update_one({"_id":ObjectId(id)},{"$set":{"personalityscore":score}})
+			print(result)
+		except Exception as error:
+			print(error)

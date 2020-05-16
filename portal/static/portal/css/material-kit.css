@@ -13697,8 +13697,11 @@ thead.thead-inverse th,
 
 .card-profile .card-avatar {
   width: 130px;
-  max-width: 130px;
-  max-height: 130px; }
+  height: 130px;
+  align-items: center;
+  object-fit: fill;
+  min-width: 130px;
+  min-height: 130px; }
 
 .card-profile [class*="col-"] .card-avatar {
   width: auto; }

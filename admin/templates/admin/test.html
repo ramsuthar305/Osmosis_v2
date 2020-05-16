@@ -2,35 +2,46 @@
 {% block main_page %}
 <div id="" class="cd-section" style="padding-top: 3%; height: 78vh;">
     <div class="container">
-        <div class="bg-white w-50 m-auto p-4 m-4 rounded shadow ">
+        <div class="bg-white w-75 m-auto p-4 m-4 rounded shadow ">
+            {% if job['is_apti'] %}
+            <form method="POST" action="{{url_for('admin.add_aptitude', job_id=job['job_id'])}}">
+                {% else %}
+                <form method="POST" action="{{url_for('admin.add_personality', job_id=job['job_id'])}}">
+                    {% endif %}
+                    <div class="row m-auto">
+                        {% if job['is_apti'] %}
+                        <h1 class="title">
+                            Aptitude test Questions
+                        </h1>
+                        {% else %}
+                        <h1 class="title">
+                            Personality test Questions
+                        </h1>
+                        {% endif %}
+                        {% for n in range(1,11) %}
+                        <div class="col-md-12 border rounded my-4">
+                            <div class="question">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="question{{n}}"
+                                        placeholder="Question number {{n}}" id="exampleInput{{n}}">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="options{{n}}" class="bmd-label">Options</label>
+                                <input type="text" value="" placeholder="type and press enter" name="options{{n}}"
+                                    class="tagsinput form-control" data-role="tagsinput" data-color="rose">
+                            </div>
+                            <div>
 
-            <form method="POST" action="{{url_for('admin.add_aptitude')}}">
-                <div class="row m-auto">
-                    {% for n in range(1,11) %}
-                    <div class="col-md-12 border rounded my-4">
-                        <div class="question">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="question{{n}}" placeholder="Question number {{n}}"
-                                    id="exampleInput{{n}}">
+                                <label for="answer" class="bmd-label">Answer</label>
+                                <input type="text" class="form-control" name="answer{{n}}"
+                                    placeholder="Type answer for question {{n}}" id="exampleInput{{n}}">
                             </div>
                         </div>
-                        <div>
-                            <label for="options{{n}}" class="bmd-label">Options</label>
-                            <input type="text" value="" placeholder="type and press enter" name="options{{n}}"
-                                class="tagsinput form-control" data-role="tagsinput" data-color="rose" >
-                        </div>
-                        <div>
-
-                            <label for="answer" class="bmd-label">Answer</label>
-                            <input type="text" class="form-control" name="answer{{n}}" placeholder="Type answer for question {{n}}"
-                                id="exampleInput{{n}}">
-                        </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary btn-round m-auto">Save</button>
                     </div>
-                    {% endfor %}
-
-                    <button type="submit" class="btn btn-primary btn-round m-auto">Save</button>
-                </div>
-            </form>
+                </form>
         </div>
     </div>
 </div>

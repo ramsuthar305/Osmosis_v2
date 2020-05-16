@@ -3,7 +3,7 @@
 <div id="cards" class="cd-section" style="margin-top: 3%;">
     <div class="container">
         <div class="card bg-white px-4">
-            <h2 class="title text-center"> Aptitude test</h2>
+            <h2 class="title text-center"> Personality test</h2>
             <hr>
             <div class="px-4 ">
                 <p class="title" style="font-size: 19px; text-align: justify;"> You have got only 15 min to complete
@@ -31,8 +31,9 @@
             </div>
             <hr>
             <div class="px-4 ">
-                <form action="{{url_for('portal.test',job_id=job['_id'])}}" id="testForm" method="POST">
-                {% for question in job['aptitude'] %}
+               <span class="text-danger">sfsdfsdf{{job['personality']}}</span> 
+                <form action="{{url_for('portal.personality_test',job_id=job['_id'],test_id=test_id)}}" id="testForm" method="POST">
+                {% for question in job['personality'] %}
                 <div>
                     <div>
                         <h3 class="title" style="display: inline-block;">Q. </h3>

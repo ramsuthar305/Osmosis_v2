@@ -1,0 +1,134 @@
+{% extends 'portal/base.html' %}
+{% block main_page %}
+<div id="available_job" class="cd-section" style="padding-top: 3%; min-height: 100vh;">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-login" role="document">
+            <div class="modal-content">
+                <div class="card card-signup card-plain">
+                    <div class="modal-header">
+                        <div class="card-header card-header-primary text-center">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                    class="material-icons">clear</i></button>
+                            <h4 class="card-title">Add new job</h4>
+
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{url_for('admin.add_job')}}">
+                            <p class="description text-center">Please fill below detail</p>
+                            <div class="card-body">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInput1" class="label">category</label>
+                                        <input type="text" class="form-control" name="category"
+                                            placeholder="Which category does your job falls" id="exampleInput1">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="title" class="label">title</label>
+                                        <input type="text" class="form-control" name="title" placeholder="Job title"
+                                            id="exampleInput1">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="description" class="label">description</label>
+                                        <input type="text" class="form-control" name="description"
+                                            placeholder="Job description" id="exampleInput1">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="skills" class="label">skills</label>
+                                        <input type="text" value="" placeholder="Type skill and press enter"
+                                            name="skills" class="tagsinput form-control" data-role="tagsinput"
+                                            data-color="rose">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Save</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                <h1 class="title" style="color: white;">Jobs</h1>
+            </div>
+            <div class="col-md-4">
+
+                <button class="btn btn-block btn-link btn-wd btn-lg text-white" data-toggle="modal"
+                    data-backdrop="false" data-target="#loginModal">
+                    <i class="material-icons">add</i>
+                    Add Job
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+
+            {% for job in alljobs %}
+            <div class="col-lg-4 col-md-4" onclick="location.href='{{url_for('admin.shortlist', job_id=job['_id'])}}';">
+                <div class="card">
+                    <div class="card-body ">
+                        <h6 class="card-category text-danger">
+                            <i class="material-icons">trending_up</i> {{job['category']}}
+                        </h6>
+                        <h4 class="card-title">
+                            <a href="#pablo">{{job['title']}}</a>
+                        </h4>
+                    </div>
+                    <div class="card-footer ">
+
+
+                        {% for i in job['skills'] %}
+                        <span class="badge badge-primary mx-1">{{i}}</span>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<script src="{{url_for('portal.static', filename='js/three.r95.min.js')}}"></script>
+<script src="{{url_for('portal.static', filename='js/vanta.waves.min.js')}}"></script>
+<script>
+    VANTA.WAVES({
+        el: "#bdy",
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x0,
+        waveSpeed: 0.45,
+        zoom: 1.48
+    })
+</script>
+
+{% endblock %}
