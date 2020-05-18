@@ -1,4 +1,4 @@
-{% extends 'portal/base.html' %}
+{% extends 'admin/base.html' %}
 {% block main_page %}
 <div id="available_job" class="cd-section" style="padding-top: 3%; min-height: 100vh;">
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
@@ -29,14 +29,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="title" class="label">title</label>
-                                        <input type="text" class="form-control" required name="title" placeholder="Job title"
+                                        <input type="text" required class="form-control"  name="title" placeholder="Job title"
                                             id="exampleInput1">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="description" class="label">description</label>
-                                        <input type="text" class="form-control" required name="description"
+                                        <input type="text" required class="form-control"  name="description"
                                             placeholder="Job description" id="exampleInput1">
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label for="skills" class="label">skills</label>
                                         <input type="text" value="" placeholder="Type skill and press enter"
-                                            name="skills" class="tagsinput form-control" data-role="tagsinput"
+                                            name="skills" required class="tagsinput form-control" data-role="tagsinput"
                                             data-color="rose">
 
                                     </div>

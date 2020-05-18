@@ -138,7 +138,8 @@ def signup():
             }
             registration_status = user_object.save_user(user)
             if registration_status == True:
-                return redirect(url_for("portal.signin"))
+                flash("User registered Successfully!!!")
+                return render_template('portal/signin.html', TOPIC_DICT = TOPIC_DICT)
             else:
                 flash(registration_status)
                 return render_template('portal/signup.html', TOPIC_DICT = TOPIC_DICT)

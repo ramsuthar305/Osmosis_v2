@@ -32,8 +32,9 @@ class Users:
 				"skills":[]
 			})
 			if result:
-				
 				return True
+			else:
+				return False
 
 		except Exception as error:
 			print(error)
