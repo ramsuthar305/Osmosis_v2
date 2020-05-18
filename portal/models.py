@@ -44,7 +44,7 @@ class Users:
 	def login_user(self, username, password):
 		try:
 			login_result = self.mongo.users.find_one(
-				{"$and": [{"username": username}, {"phone": username},
+				{"$and": [{"username": username},
 						  {"password": password}]})
 			if login_result is not None:
 				session["username"] = login_result["username"]
