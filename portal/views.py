@@ -163,8 +163,6 @@ def signin():
             else:
                 flash(login_status)
                 return render_template('portal/signin.html', TOPIC_DICT = TOPIC_DICT)
-        elif session['logged_in']==True:
-            return redirect(url_for("portal.dashboard"))
         else:
             return render_template('portal/signin.html')
     except Exception as error:

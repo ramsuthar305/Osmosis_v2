@@ -8,9 +8,15 @@
                 <h4 class="text-white">Tired of finding right jobs and employees? Don't worry we have covered it all for you. Find the jobs
                     which suits your profile. Or find the employees who suits your criterias.</h4>
                 <br>
-                <a href="{{url_for('portal.signup')}}" class="btn btn-outline-info btn-raised btn-lg">
+                {% if session['logged_in'] %}
+                <a href="{{url_for('portal.dashboard')}}" class="btn btn-outline-info btn-raised btn-lg">
                     Get Started
                 </a>
+                {% else %}
+                <a href="{{url_for('portal.signin')}}" class="btn btn-outline-info btn-raised btn-lg">
+                    Get Started
+                </a>
+                {% endif %}
 
             </div>
             <div class="col-md-5 pl-4">
