@@ -62,7 +62,10 @@ def test():
             shortlist_profile['user_id']=session['id']
             shortlist_profile['aptiscore']=aptitude_sum
             shortlist_profile['personalityscore']=None
-            shortlist_profile['skillscore']=skillscore(job['skills'])
+            print('this is job skills',job['skills'])
+            job_skills=job['skills']
+            shortlist_profile['skillscore']=skillscore(job)
+            print('this is job skills herer',job['skills'])
             shortlist_profile['createdOn']=datetime.now()
             shortlist_profile['totalScore']=10+len(job['skills'])+10
             result=shortlist.save_profile(shortlist_profile)
@@ -76,10 +79,12 @@ def test():
             job['is_apti']=True
             return render_template('portal/test.html',job=job)
     except Exception as error:
-        print('this is exception',error)
+        print('this is exception here',error)
 
 def skillscore(jobskills):
+    print('calleddd')
     user=user_object.get_user_profile()
+    print('i am herer',user)
     user_skills=[x.lower() for x in user['skills']]
     skill_score=0
     print(user_skills)
@@ -133,7 +138,7 @@ def signup():
             }
             registration_status = user_object.save_user(user)
             if registration_status == True:
-                return redirect(url_for("portal.dashboard"))
+                return redirect(url_for("portal.signin"))
             else:
                 flash(registration_status)
                 return render_template('portal/signup.html', TOPIC_DICT = TOPIC_DICT)
@@ -147,9 +152,6 @@ def signup():
 @portal.route('/signin', methods = ['GET', 'POST'])
 def signin():
     try:
-        print(session['logged_in'])
-        if session['logged_in']==True:
-            return redirect(url_for("portal.dashboard"))
         if request.method == 'POST':
             #x = request.get_json(force=True)
             email= request.form.get('email')
@@ -161,6 +163,8 @@ def signin():
             else:
                 flash(login_status)
                 return render_template('portal/signin.html', TOPIC_DICT = TOPIC_DICT)
+        elif session['logged_in']==True:
+            return redirect(url_for("portal.dashboard"))
         else:
             return render_template('portal/signin.html')
     except Exception as error:

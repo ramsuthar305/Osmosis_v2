@@ -28,15 +28,11 @@ class Users:
 				"name":user['name'],
 				"resume":user['resume'],
 				"profile_picture":user['profile_picture'],
-				"user_type":"normal"
+				"user_type":"normal",
+				"skills":[]
 			})
 			if result:
-				print(result)
-				session["username"] = user["username"]
-				session["name"] = user["name"]
-				session["logged_in"] = True
-				session["user_type"] = "normal"
-				session['id'] = str(user["username"])
+				
 				return True
 
 		except Exception as error:
