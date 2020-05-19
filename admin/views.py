@@ -82,7 +82,8 @@ def shortlist():
 @admin.route('/delete_job',methods=['POST','GET'])
 def delete_job():
     try:
-        message=Jobs.delete_job(request.args.get('job_id'))
+        print("Im here"*100)
+        Jobs.delete_job(request.args.get('job_id'))
         
         return redirect(url_for('admin.dashboard'))
     except Exception as error:
