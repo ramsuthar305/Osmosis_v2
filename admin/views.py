@@ -86,7 +86,7 @@ def delete_job():
         flash(message)
         return redirect(url_for('admin.dashboard'))
     except Exception as error:
-        flash(error)
+        flash(message)
         return redirect(url_for('admin.dashboard'))
 
 @admin.route('/add_personality/<job_id>',methods=['POST','GET'])
