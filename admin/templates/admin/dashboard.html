@@ -91,7 +91,7 @@
             {% endif %}
             {% endwith %}
             {% for job in alljobs %}
-            <div class="col-lg-4 col-md-4" onclick="location.href='{{url_for('admin.shortlist', job_id=job['_id'])}}';">
+            <div class="col-lg-4 col-md-4">
                 <div class="card">
                     <div class="card-body ">
                         <div class="row">
@@ -101,14 +101,13 @@
                                 </h6>
                             </div>
                             <div class="col-md-1">
-
+                                <span class="lnr lnr-trash"> <a
+                                        href="{{url_for('admin.delete_job',job_id=job['_id'])}}"></a> </span>
                             </div>
-                            <span class="lnr lnr-trash"> <a
-                                    href="{{url_for('admin.delete_job',job_id=job['_id'])}}"></a> </span>
 
                         </div>
                         <h4 class="card-title">
-                            <a href="#pablo">{{job['title']}}</a>
+                            <a href="{{url_for('admin.shortlist', job_id=job['_id'])}}">{{job['title']}}</a>
                         </h4>
                     </div>
                     <div class="card-footer ">
