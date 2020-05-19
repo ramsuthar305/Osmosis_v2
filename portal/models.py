@@ -121,7 +121,9 @@ class Shortlist:
 	def update_personality(self,id,score):
 		try:
 			print(id,score)
-			result=mongo.db.shortlist.update_one({"_id":ObjectId(id)},{"$set":{"personalityscore":score}})
+			result=mongo.db.shortlist.find_one({"_id":ObjectId(id)})
+			all_score=result['score_achieved']+score
+			result=mongo.db.shortlist.update_one({"_id":ObjectId(id)},{"$set":{"personalityscore":score,"score_achieved":all_score}})
 			print(result)
 		except Exception as error:
 			print(error)
