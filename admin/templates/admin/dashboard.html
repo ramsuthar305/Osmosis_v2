@@ -29,14 +29,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="title" class="label">title</label>
-                                        <input type="text" required class="form-control"  name="title" placeholder="Job title"
-                                            id="exampleInput1">
+                                        <input type="text" required class="form-control" name="title"
+                                            placeholder="Job title" id="exampleInput1">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="description" class="label">description</label>
-                                        <input type="text" required class="form-control"  name="description"
+                                        <input type="text" required class="form-control" name="description"
                                             placeholder="Job description" id="exampleInput1">
                                     </div>
                                 </div>
@@ -83,9 +83,16 @@
             <div class="col-lg-4 col-md-4" onclick="location.href='{{url_for('admin.shortlist', job_id=job['_id'])}}';">
                 <div class="card">
                     <div class="card-body ">
-                        <h6 class="card-category text-danger">
-                            <i class="material-icons">trending_up</i> {{job['category']}}
-                        </h6>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h6 class="card-category text-danger">
+                                    <i class="material-icons">trending_up</i> {{job['category']}}
+                                </h6>
+                            </div>
+                            <col-md-2>
+                                <span class="lnr lnr-trash"></span>
+                            </col-md-2>
+                        </div>
                         <h4 class="card-title">
                             <a href="#pablo">{{job['title']}}</a>
                         </h4>
