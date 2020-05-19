@@ -79,8 +79,8 @@ def shortlist():
     print('\n\nall jobs: ',profiles)
     return render_template('admin/shortlist.html',profiles=profiles)
 
-@admin.route('/delete_job',methods=['POST','GET'])
-def delete_job():
+@admin.route('/delete_job/<job_id>',methods=['POST','GET'])
+def delete_job(job_id):
     try:
         print("Im here"*100)
         Jobs.delete_job(request.args.get('job_id'))
