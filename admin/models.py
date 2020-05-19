@@ -119,6 +119,7 @@ class Shortlist:
 		all_profiles=[]
 		for profile in profiles:
 			user=users.get_user_by_id(profile['user_id'])
+			print(profile['aptiscore'],profile['personalityscore'],profile['skillscore'])
 			user['score']=profile['aptiscore']+profile['personalityscore']+profile['skillscore']
 			user['outoff']=profile['totalScore']
 			all_profiles.append(user)

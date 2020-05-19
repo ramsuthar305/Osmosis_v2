@@ -31,13 +31,13 @@
             </div>
             <hr>
             <div class="px-4 ">
-               <span class="text-danger">sfsdfsdf{{job['personality']}}</span> 
                 <form action="{{url_for('portal.personality_test',job_id=job['_id'],test_id=test_id)}}" id="testForm" method="POST">
                 {% for question in job['personality'] %}
                 <div>
                     <div>
                         <h3 class="title" style="display: inline-block;">Q. </h3>
                         <p class="title" style="font-size: 19px; text-align: justify; display: inline-block;">
+                            {{question['question']}}
                     </div>
                     <div class="row px-4 ">
                         {% for option in question['options'] %}
