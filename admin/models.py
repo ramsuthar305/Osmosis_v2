@@ -112,7 +112,7 @@ class Jobs:
 	def delete_job(self,id):
 		try:
 			print("inside modal: ")
-			result=mongo.db.jobs.delete_one({'_id': ObjectId(id)})
+			result=mongo.db.jobs.remove({"_id": ObjectId(id)})
 			print("This is result: ",result)
 			if result:
 				return "Successfully deleted"
