@@ -83,7 +83,7 @@ def shortlist():
 def delete(job_id):
     try:
         print("Im here"*100)
-        Jobs.delete_job(request.args.get('job_id'))
+        jobs.delete_job(request.args.get('job_id'))
         
         return redirect(url_for('admin.dashboard'))
     except Exception as error:
