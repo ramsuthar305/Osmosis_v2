@@ -109,20 +109,6 @@ class Jobs:
 			print(error)
 			return "something went wrong"
 
-	def delete_job(self,id):
-		try:
-			print("inside modal: ",id)
-			result=mongo.db.jobs.delete_one({"_id": ObjectId(id)})
-			for i in result:
-				print(i)
-			if result:
-				return "Successfully deleted"
-			else:
-				return "opps something went wrong"
-		except Exception as error:
-			print(error)
-			return error
-
 class Shortlist:
 	def __init__(self):
 		self.mongo = mongo.db
@@ -133,9 +119,8 @@ class Shortlist:
 		all_profiles=[]
 		for profile in profiles:
 			user=users.get_user_by_id(profile['user_id'])
-			print(profile['aptiscore'],profile['personalityscore'],profile['skillscore'])
-			user['score']=profile['aptiscore']+profile['personalityscore']+profile['skillscore']
+			user['score']=profile['score_achieve']+profile['personalityscore']+profile['skillscore']
 			user['outoff']=profile['totalScore']
 			all_profiles.append(user)
 		print(all_profiles)
-		return sorted(all_profiles, key = lambda i: i['score'],reverse=True)
+		return all_profiles
