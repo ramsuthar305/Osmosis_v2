@@ -61,7 +61,7 @@ def test():
             shortlist_profile['job_id']=request.args.get('job_id')
             shortlist_profile['user_id']=session['id']
             shortlist_profile['aptiscore']=aptitude_sum
-            shortlist_profile['personalityscore']=None
+            shortlist_profile['personalityscore']=0
             print('this is job skills',job['skills'])
             job_skills=job['skills']
             shortlist_profile['skillscore']=skillscore(job)
