@@ -70,7 +70,7 @@ def add_aptitude(job_id):
 def dashboard():
     alljobs=jobs.get_all_jobs()
     print('\n\nall jobs: ',alljobs)
-    return render_template('admin/dashboard.html',alljobs=alljobs)
+    return render_template('admin/dashboard.html',alljobs=alljobs, TOPIC_DICT = TOPIC_DICT)
 
 @admin.route('/shortlist')
 def shortlist():
@@ -84,7 +84,7 @@ def delete_job():
     try:
         message=Jobs.delete_job(request.args.get('job_id'))
         flash(message)
-        return redirect(url_for('admin.dashboard'), TOPIC_DICT = TOPIC_DICT)
+        return redirect(url_for('admin.dashboard'))
     except Exception as error:
         flash(error)
         return redirect(url_for('admin.dashboard'), TOPIC_DICT = TOPIC_DICT)
