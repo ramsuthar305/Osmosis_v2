@@ -109,6 +109,17 @@ class Jobs:
 			print(error)
 			return "something went wrong"
 
+	def delete_job(self,id):
+		try:
+			result=mongo.db.jobs.delete_one({'_id': ObjectId(id)})
+			if result:
+				return "Successfully deleted"
+			else:
+				return "opps something went wrong"
+		except Exception as error:
+			print(error)
+			return error
+
 class Shortlist:
 	def __init__(self):
 		self.mongo = mongo.db

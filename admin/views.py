@@ -79,6 +79,16 @@ def shortlist():
     print('\n\nall jobs: ',profiles)
     return render_template('admin/shortlist.html',profiles=profiles)
 
+@admin.route('/delete_job',methods=['POST','GET'])
+def delete_job():
+    try:
+        message=Jobs.delete_job(request.args.get('job_id'))
+        flash(message)
+        return redirect(url_for('admin.dashboard'), TOPIC_DICT = TOPIC_DICT)
+    except Exception as error:
+        flash(error)
+        return redirect(url_for('admin.dashboard'), TOPIC_DICT = TOPIC_DICT)
+
 @admin.route('/add_personality/<job_id>',methods=['POST','GET'])
 def add_personality(job_id):
     print(job_id)
