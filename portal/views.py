@@ -65,7 +65,7 @@ def test():
             print('this is job skills',job['skills'])
             job_skills=job['skills']
             shortlist_profile['skillscore']=skillscore(job)
-            shortlist_profile['score_achieved']=aptitude_sum+skillscore(job)
+            print('this is job skills herer',job['skills'])
             shortlist_profile['createdOn']=datetime.now()
             shortlist_profile['totalScore']=10+len(job['skills'])+10
             result=shortlist.save_profile(shortlist_profile)

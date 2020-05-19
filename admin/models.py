@@ -123,4 +123,4 @@ class Shortlist:
 			user['outoff']=profile['totalScore']
 			all_profiles.append(user)
 		print(all_profiles)
-		return all_profiles
+		return sorted(all_profiles, key = lambda i: i['score'],reverse=True)
