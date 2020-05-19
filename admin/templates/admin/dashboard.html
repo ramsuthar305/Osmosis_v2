@@ -95,14 +95,14 @@
                 <div class="card">
                     <div class="card-body ">
                         <div class="row">
-                            <div class="col-md-11">
+                            <div class="col-md-10">
                                 <h6 class="card-category text-danger">
                                     <i class="material-icons">trending_up</i> {{job['category']}}
                                 </h6>
                             </div>
-                            <div class="col-md-1">
-                                <span class="lnr lnr-trash"> <a
-                                        href="{{url_for('admin.delete_job',job_id=job['_id'])}}"></a> </span>
+                            <div class="col-md-2">
+                                <a href="{{url_for('admin.delete_job',job_id=job['_id'])}}"><span
+                                        class="lnr lnr-trash"></span> </a>
                             </div>
 
                         </div>
