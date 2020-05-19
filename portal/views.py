@@ -106,7 +106,7 @@ def personality_test():
             for question in job['personality']:
                 if question['answer']==request.form.get(question['question']):
                     personality_sum+=1 
-            print('this is test_id ',)
+            print('this is test_id ',personality_sum)
             shortlist.update_personality(request.args.get('test_id'),personality_sum)
             return redirect(url_for('portal.dashboard'))
             
