@@ -31,39 +31,42 @@
             </div>
             <hr>
             <div class="px-4 ">
-                <form action="{{url_for('portal.personality_test',job_id=job['_id'],test_id=test_id)}}" id="testForm" method="POST">
-                {% for question in job['personality'] %}
-                <div>
-                    <div>
-                        <h3 class="title" style="display: inline-block;">Q. </h3>
-                        <p class="title" style="font-size: 19px; text-align: justify; display: inline-block;">
-                            {{question['question']}}
-                    </div>
-                    <div class="row px-4 ">
-                        {% for option in question['options'] %}
-                        <div class="form-check form-check-radio col-md-3">
-                            <label class="form-check-label text-black">
-                                <input class="form-check-input" type="radio" name="{{question['question']}}"
-                                    id="exampleRadios1" value="{{option}}">
+                <form action="{{url_for('portal.personality_test',job_id=job['_id'],test_id=test_id)}}" id="testForm"
+                    method="POST">
+                    <ol>
+                        {% for question in job['personality'] %}
+                        <div>
+                            <div>
+                                <li>
+                                    <p class="title"
+                                        style="font-size: 19px; text-align: justify; display: inline-block;">
+                                        {{question['question']}}</p>
+                                </li>
+                            </div>
+                            <div class="row px-4 ">
+                                {% for option in question['options'] %}
+                                <div class="form-check form-check-radio col-md-3">
+                                    <label class="form-check-label text-black">
+                                        <input class="form-check-input" type="radio" name="{{question['question']}}"
+                                            id="exampleRadios1" value="{{option}}">
 
-                                {{option}}
-                                <span class="circle">
-                                    <span class="check"></span>
-                                </span>
-                            </label>
+                                        {{option}}
+                                        <span class="circle">
+                                            <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
                         {% endfor %}
-                    </div>
-                </div>
-                {% endfor %}
-                
-                <hr>
-                <input type="radio" name="name" value="name">
-                <input type="submit" onclick="document.getElementById('testForm').submit();"
-                    class="btn btn-primary">Submit</button>
+                    </ol>
+                    <hr>
+                    <input type="submit" onclick="document.getElementById('testForm').submit();"
+                        class="btn btn-primary">Submit</button>
                 </form>
 
-                
+
             </div>
         </div>
     </div>
