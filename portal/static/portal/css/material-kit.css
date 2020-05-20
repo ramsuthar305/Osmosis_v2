@@ -13829,7 +13829,7 @@ thead.thead-inverse th,
       margin-top: 15px; }
     .card-profile .card-avatar img, .card-testimonial .card-avatar img {
       width: 100%;
-      height: auto; }
+      height: 100%; }
   .card-profile .card-body + .card-footer, .card-testimonial .card-body + .card-footer {
     margin-top: -15px; }
   .card-profile .card-footer .btn.btn-just-icon, .card-testimonial .card-footer .btn.btn-just-icon {
