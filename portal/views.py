@@ -133,7 +133,7 @@ def signup():
                 "password":password,
                 "phone":None,
                 "resume":None,
-                "profile_picture":None,
+                "profile_picture":'img/image_placeholder.jpg',
                 "address":None
             }
             registration_status = user_object.save_user(user)
