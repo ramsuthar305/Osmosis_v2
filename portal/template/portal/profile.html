@@ -61,7 +61,11 @@
 
                         <input type="file" multiple="" name="resume" class="inputFileHidden">
                         <div class="input-group">
-                            <input type="text" class="form-control inputFileVisible"  placeholder="Your resume">
+                            {% if user['resume'] %}
+                            <input type="text" class="form-control inputFileVisible"  placeholder="{{user['resume']}}">
+                            {% else %}
+                            <input type="text" class="form-control inputFileVisible"  placeholder="Upload your resume">
+                            {% endif %}
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-link btn-fab btn-primary">
                                     <i class="material-icons">attach_file</i>
