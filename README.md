@@ -1,6 +1,6 @@
 # Osmosis
 
-Osmosis is a automatic employee recruitement portal, used for automatic profile ranking based on resume, and scores of tests of applied job.
+Osmosis is a automatic employee recruitement portal built using NLTK and flask, used for automatic profile ranking based on resume, and scores of tests of applied job to help recruiters filter profiles. Project does resume analysis for profile ranking. 
 
 ## Getting Started
 
@@ -55,9 +55,6 @@ After successfull installation of the project and setting up the server below st
 5. Profile 
   - Add employee resume and other details here.
 
-```
-Give an example
-```
 
 ## Server and database configuration
 ```app.py``` is the entry point of the project. To change or add routes, one can easily do it here.
