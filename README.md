@@ -23,7 +23,7 @@ python3 -m nltk.downloader words
 
 #### 2. Download nltk packages for NLP (natural language processing)
 ```
-      - Open python shell by command >python3 in the terminal
+      - Open python shell by command `python3` in the terminal
       - >>> import nltk
       - >>> nltk.download()
       - Press option `d`
