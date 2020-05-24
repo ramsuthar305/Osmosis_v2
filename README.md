@@ -22,13 +22,12 @@ python3 -m nltk.downloader words
 ```
 
 #### 2. Download nltk packages for NLP (natural language processing)
-```
-      - Open python shell by command `python3` in the terminal
-      - >>> import nltk
-      - >>> nltk.download()
-      - Press option `d`
-      - Type `all` and press enter.
-```
+- ```Open python shell by command `python3` in the terminal```
+- ```>>> import nltk```
+- ```>>> nltk.download()```
+- ```Press option `d` ```
+- ```Type `all` and press enter.```
+
 
 #### 3. Monogdb
 - Follow instructions given on [Mongodb official](https://docs.mongodb.com/manual/administration/install-community/).
