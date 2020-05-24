@@ -42,7 +42,8 @@ To run the project on your local machine follow below steps
 #### 2. Extract the project from Osmosis_v2-master.zip
 #### 3. Start monogdb service using ```sudo service mongod start```
 #### 4. Navigate to the Osmosis_v2-master folder
-#### 5. Run project on local host using ```flask run```.
+#### 5. Install required packages as mentioned above.
+#### 6. Run project on local host using ```flask run```.
 
 
 ### Step to execute the project
